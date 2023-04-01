@@ -1,87 +1,88 @@
-function Car(make, model, year) {
-  this.make = make;
-  this.model = model;
-  this.year = year;
-  this.getCarInfo = () => {
-    return `${this.make} ${this.model} released in ${this.year}`;
-    //`Tesla Model S released in 2015`
-    //`Tesla`, `Model S`, `2015`
-  };
-  this.owners = [this];
+class Vehicle {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+}
+class Car extends Vehicle {
+  constructor(make, model, year) {
+    super(make, model);
+    this.year = year;
+  }
+  owners = [];
 
-  this.addOwner = (oneParameter) => {
+  addOwner = (oneParameter) => {
     this.owners.push(oneParameter);
   };
-  // this.removeOwner = () => {
-  //   this.owners = this.owners.splice(0, this.owners.length);
-  // };
-  this.removeOwner = function(name) {
+
+  removeOwner = function (name) {
     for (let i = 0; i < this.owners.length; i++) {
       if (this.owners[i].name === name) {
-        this.owners.splice(i,  this.owners.length-1);
+        this.owners.splice(i, this.owners.length - 1);
         return;
       }
     }
-  }
-  this.getOwnersCount = () => this.owners.length;
-
-  //8
-  this.getOwnerNames = () => {
-    return this.owners.map((owner) => owner.fullName);
   };
+  getOwnersCount = () => this.owners.length;
 
-  //9
-  this.getFullInfo = () => {
-    //// Tesla Model S from 2015. 2 person owns this car. These are - Daniel Barbakadze, Elon Musk.
-    //////map ???????????????????
+  getOwnerNames() {
+    return this.owners.map((owner) => owner.fullName);
+  }
+
+  getFullInfo() {
     const ownerNames = this.getOwnerNames().join(', ');
     return `${this.make} ${this.model} from ${this.year}. ${this.owners.length} person owns this car. There are ${ownerNames} ${ownerNames}`;
-  };
+  }
+  getCarInfo() {
+    return `${this.make} ${this.model} released in ${this.year}`;
+  }
 }
 
-function Person(name, surname, age, gender, cars = []) {
-  this.name = name;
-  this.surname = surname;
-  this.age = age;
-  this.gender = gender;
-  this.cars = cars;
-
-  this.fullName = () => {
+class Person {
+  constructor(name, surname, age, gender, cars = []) {
+    this.name = name;
+    this.surname = surname;
+    this.age = age;
+    this.gender = gender;
+    this.cars = cars;
+  }
+  fullName() {
     return `${this.name} ${this.surname}`;
-  };
-  this.countCars = () => {
+  }
+  countCars() {
     return this.cars.length;
-  };
+  }
 
   //7
-  this.buysCar = (oneParameter) => {
-    // return this.cars.push(oneParameter)
+  buysCar = (oneParameter) => {
     this.cars.push(oneParameter);
     oneParameter.addOwner(this);
   };
-  this.sellsCar = (car) => {
+  sellsCar = (car) => {
     const index = this.cars.indexOf(car);
     if (index > -1) {
       this.cars.splice(index, 1);
       car.removeOwner(this);
     }
   };
-
-  this.getAllCarsInfo = () => {
+  getAllCarsInfo = () => {
     if (this.cars.length === 0) {
       return `${this.fullName()} doesn't own any cars.`;
     }
-    const carInfoList = this.cars.map((car) => car.getCarInfo()).join(', ');
+    const carInfoList = this.cars.map((car) => `${car.make} ${car.model}`).join(', ');
     return `${this.fullName()} owns these cars: ${carInfoList}.`;
   };
 }
 
 //////////////////////////////////////////
+/// TEST /////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
-///////////////C H E C K//////////////////
+//////////////////////////////////////////
+//////////////////////////////////////////
+//////////////////////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
 //////////////////////////////////////////
