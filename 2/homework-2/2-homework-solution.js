@@ -12,17 +12,17 @@ function Car(make, model, year) {
   this.addOwner = (oneParameter) => {
     this.owners.push(oneParameter);
   };
-  this.removeOwner = () => {
-    this.owners.splice(0, this.owners.length);
-  };
-  // this.removeOwner = function(name) {
-  //   for (let i = 0; i < this.owners.length; i++) {
-  //     if (this.owners[i].name === name) {
-  //       this.owners.splice(i,  this.owners.length-1);
-  //       return;
-  //     }
-  //   }
-  // }
+  // this.removeOwner = () => {
+  //   this.owners = this.owners.splice(0, this.owners.length);
+  // };
+  this.removeOwner = function(name) {
+    for (let i = 0; i < this.owners.length; i++) {
+      if (this.owners[i].name === name) {
+        this.owners.splice(i,  this.owners.length-1);
+        return;
+      }
+    }
+  }
   this.getOwnersCount = () => this.owners.length;
 
   //8
