@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example 1</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- end of babel -->
+    <!-- css -->
+    <style>
+      * {
+        height: 100%;
+      }
+      #div_1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        width: 500px;
+        height: 500px;
+        font-size: large;
+        background-color: darkcyan;
+        color: magenta;
+        border-radius: 5px;
+        font-size: 50px;
+        cursor: pointer;
+      }
+    </style>
+    <!-- end of css -->
+  </head>
+  <body>
+    <div id="div_1">
+      <!-- button -->
+      <button id="root" value="button"></button>
+      <!--  -->
+    </div>
+    <!-- react component -->
+    <script type="text/babel">
+      // works without use strict too
+      'use strict';
+      const e = React.createElement;
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { counter: 0 };
+          this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick() {
+          // unda iyos previousState (pS)
+          this.setState((pS) => ({ counter: pS.counter + 1 }));
+        }
+        render() {
+          return e('button', { onClick: this.handleClick }, `Clicked ${this.state.counter} times`);
+        }
+      }
+      ReactDOM.render(e(Counter), document.getElementById('root'));
+    </script>
+    <!-- end of react component -->
+    <!-- react unpackage -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- react unpackage -->
+  </body>
+</html>

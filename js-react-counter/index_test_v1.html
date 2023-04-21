@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example 1</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- <div id="root"></div> -->
+    <button id="button" value="button"></button>
+    <!-- react component -->
+    <script type="text/babel">
+      // use stricktis gareshec mushaobs
+      'use strict';
+      const e = React.createElement;
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { counter: 0 };
+          // this.handleClick = this.handleClick
+        }
+        render() {
+          this.state((pS) => ({ counter: pS.counter++ }));
+          // this.state.counter.onClick={() => this.setState({counter++})}
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- <script src="./index.js" defer></script>
+    <script src="./node.js" defer></script> -->
+  </body>
+</html>
